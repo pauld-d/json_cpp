@@ -51,10 +51,9 @@ std::cout << json_to_string(json) << std::endl;
 
 Nesting: 
 ```
-    JsonNode json = json_empty_object();
-    json["just"]["testing"]["the"]["nesting"] = json_null(); 
-    std::cout << std::endl; 
-    std::cout << "   " << json_to_string(json) << std::endl; 
+JsonNode json = json_empty_object();
+json["just"]["testing"]["the"]["nesting"] = json_null(); 
+std::cout << json_to_string(json) << std::endl; 
 ```
 
 ![image](https://github.com/pauld-d/json_cpp/assets/36675895/b9295686-aa9a-40b9-831b-e23fceaeefef)
@@ -65,9 +64,8 @@ json = json_empty_object();
 json["key0"] = true; 
 bool has_key0 = json.contains("key0"); 
 bool has_key1 = json.contains("key1"); 
-std::cout << "   has_key0: " << (has_key0 ? "true" : "false") << std::endl; 
-std::cout << "   has_key1: " << (has_key1 ? "true" : "false") << std::endl; 
-std::cout << std::endl; 
+std::cout << "has_key0: " << (has_key0 ? "true" : "false") << std::endl; 
+std::cout << "has_key1: " << (has_key1 ? "true" : "false") << std::endl; 
 ```
 
 ![image](https://github.com/pauld-d/json_cpp/assets/36675895/44fb049b-30e1-4381-8368-edb9bcb6d2fd)
