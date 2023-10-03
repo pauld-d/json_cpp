@@ -16,13 +16,13 @@
 #include <iostream>
 #include <stdexcept>
 
-struct JsonNode {
+struct Json {
     enum { JSON_STRING, JSON_VALUE, JSON_OBJECT, JSON_ARRAY };
     
     private: 
         int type;
         std::string v;
-        std::map<std::string, JsonNode> on; 
+        std::map<std::string, Json> on; 
     
     public:
         bool isString() 
@@ -45,7 +45,7 @@ struct JsonNode {
             return type == JSON_ARRAY; 
         }
         
-        JsonNode& operator=(char* value) 
+        Json& operator=(char* value) 
         {
             type = JSON_STRING; 
             v = std::string(value); 
@@ -53,7 +53,7 @@ struct JsonNode {
             return *this; 
         }
         
-        JsonNode& operator=(const char* value) 
+        Json& operator=(const char* value) 
         {
             type = JSON_STRING; 
             v = std::string(value); 
@@ -61,7 +61,7 @@ struct JsonNode {
             return *this; 
         }
         
-        JsonNode& operator=(std::string value) 
+        Json& operator=(std::string value) 
         {
             type = JSON_STRING; 
             v = value; 
@@ -69,7 +69,7 @@ struct JsonNode {
             return *this; 
         }
         
-        JsonNode& operator=(unsigned int value) 
+        Json& operator=(unsigned int value) 
         {
             type = JSON_VALUE; 
             v = std::to_string(value); 
@@ -77,7 +77,7 @@ struct JsonNode {
             return *this; 
         }
         
-        JsonNode& operator=(unsigned long int value) 
+        Json& operator=(unsigned long int value) 
         {
             type = JSON_VALUE; 
             v = std::to_string(value); 
@@ -85,7 +85,7 @@ struct JsonNode {
             return *this; 
         }
         
-        JsonNode& operator=(unsigned long long int value) 
+        Json& operator=(unsigned long long int value) 
         {
             type = JSON_VALUE; 
             v = std::to_string(value); 
@@ -93,7 +93,7 @@ struct JsonNode {
             return *this; 
         }
         
-        JsonNode& operator=(int value) 
+        Json& operator=(int value) 
         {
             type = JSON_VALUE; 
             v = std::to_string(value); 
@@ -101,7 +101,7 @@ struct JsonNode {
             return *this; 
         }
         
-        JsonNode& operator=(long int value) 
+        Json& operator=(long int value) 
         {
             type = JSON_VALUE; 
             v = std::to_string(value); 
@@ -109,7 +109,7 @@ struct JsonNode {
             return *this; 
         }
         
-        JsonNode& operator=(long long int value) 
+        Json& operator=(long long int value) 
         {
             type = JSON_VALUE; 
             v = std::to_string(value); 
@@ -117,7 +117,7 @@ struct JsonNode {
             return *this; 
         }
         
-        JsonNode& operator=(bool value) 
+        Json& operator=(bool value) 
         {
             type = JSON_VALUE; 
             v = value ? "true" : "false"; 
@@ -125,7 +125,7 @@ struct JsonNode {
             return *this; 
         }
         
-        JsonNode& operator=(float value) 
+        Json& operator=(float value) 
         {
             type = JSON_VALUE; 
             v = std::to_string(value); 
@@ -133,7 +133,7 @@ struct JsonNode {
             return *this; 
         }
         
-        JsonNode& operator=(double value) 
+        Json& operator=(double value) 
         {
             type = JSON_VALUE; 
             v = std::to_string(value); 
@@ -171,7 +171,7 @@ struct JsonNode {
             else if (type == JSON_OBJECT) 
             {
                 output += "{"; 
-                std::map<std::string, JsonNode>::iterator it = on.begin(); 
+                std::map<std::string, Json>::iterator it = on.begin(); 
                 bool first = true; 
                 while (it != on.end()) 
                 {
@@ -190,7 +190,7 @@ struct JsonNode {
             else if (type == JSON_ARRAY) 
             {
                 output += "["; 
-                std::map<std::string, JsonNode>::iterator it = on.begin(); 
+                std::map<std::string, Json>::iterator it = on.begin(); 
                 bool first = true; 
                 while (it != on.end()) 
                 {
@@ -205,7 +205,7 @@ struct JsonNode {
             return output; 
         }
         
-        friend std::ostream& operator<<(std::ostream& out, JsonNode n)
+        friend std::ostream& operator<<(std::ostream& out, Json n)
 	    {
 	        if (n.type == JSON_STRING)
 	            out << n.v; 
@@ -227,7 +227,7 @@ struct JsonNode {
 	    std::vector<std::string> keys() 
 	    {
 	        std::vector<std::string> result; 
-	        std::map<std::string, JsonNode>::iterator it = on.begin(); 
+	        std::map<std::string, Json>::iterator it = on.begin(); 
             while (it != on.end()) 
             {
                 result.push_back(it->first); 
@@ -236,7 +236,7 @@ struct JsonNode {
             return result; 
 	    }
         
-        JsonNode& operator[](std::string key) 
+        Json& operator[](std::string key) 
         {
             if (is_null())
             {
@@ -260,7 +260,7 @@ struct JsonNode {
             }
         }
         
-        JsonNode operator[](long long int key) 
+        Json operator[](long long int key) 
         {
             if (type != JSON_ARRAY) throw std::invalid_argument("Cannot access index " + std::to_string(key) + " because this JSON node is not an array"); 
             
@@ -309,7 +309,7 @@ struct JsonNode {
             return c;
         }
         
-        static char* parse_object(char* json, JsonNode& obj) 
+        static char* parse_object(char* json, Json& obj) 
         {
             json = skip_whitespace(json); 
             if (*json != '{') {
@@ -334,7 +334,7 @@ struct JsonNode {
                 if (*json != '"') {
                     return NULL;
                 }
-                JsonNode value;
+                Json value;
                 std::string key; 
                 json = parse_string(json, key);
                 if (json == NULL) {
@@ -358,7 +358,7 @@ struct JsonNode {
             }
         }
         
-        static char* parse_array(char* json, JsonNode& arr) {
+        static char* parse_array(char* json, Json& arr) {
             json++; 
             json = skip_whitespace(json);
             if (*json == ']') {
@@ -374,7 +374,7 @@ struct JsonNode {
                     json++; 
                 }
                 json = skip_whitespace(json);
-                JsonNode value;
+                Json value;
                 json = parse(json, value);
                 if (json == NULL) {
                     return NULL;
@@ -388,7 +388,7 @@ struct JsonNode {
             }
         }
         
-        static char* parse(char* json, JsonNode& value) {
+        static char* parse(char* json, Json& value) {
             json = skip_whitespace(json);
             switch (*json) {
                 case '"':
@@ -411,29 +411,29 @@ struct JsonNode {
             return NULL;
         }
         
-        static JsonNode new_object() 
+        static Json new_object() 
         {
-            JsonNode node; 
+            Json node; 
             node.type = JSON_OBJECT;
             return node; 
         }
         
-        static JsonNode new_array() 
+        static Json new_array() 
         {
-            JsonNode node; 
+            Json node; 
             node.type = JSON_ARRAY; 
             return node; 
         }
         
-        static JsonNode new_value(std::string value) 
+        static Json new_value(std::string value) 
         {
-            JsonNode node; 
+            Json node; 
             node.type = JSON_VALUE; 
             node.v = value; 
             return node; 
         }
         
-        static JsonNode new_null() 
+        static Json new_null() 
         {
             return new_value("null"); 
         }
@@ -443,7 +443,7 @@ struct JsonNode {
             return type == JSON_VALUE && v == "null"; 
         }
         
-        typedef std::map<std::string, JsonNode>::iterator iterator;
+        typedef std::map<std::string, Json>::iterator iterator;
 
         iterator begin() {
             return on.begin();
@@ -454,29 +454,29 @@ struct JsonNode {
         }
 };
 
-JsonNode string_to_json(std::string s) 
+Json string_to_json(std::string s) 
 {
-    JsonNode node; 
-    JsonNode::parse((char*)s.c_str(), node); 
+    Json node; 
+    Json::parse((char*)s.c_str(), node); 
     return node; 
 }
 
-std::string json_to_string(JsonNode n) 
+std::string json_to_string(Json n) 
 {
     return n.to_string(); 
 }
 
-JsonNode json_empty_object() 
+Json json_empty_object() 
 {
-    return JsonNode::new_object(); 
+    return Json::new_object(); 
 }
 
-JsonNode json_empty_array() 
+Json json_empty_array() 
 {
-    return JsonNode::new_array(); 
+    return Json::new_array(); 
 }
 
-JsonNode json_null() 
+Json json_null() 
 {
-    return JsonNode::new_null(); 
+    return Json::new_null(); 
 }
