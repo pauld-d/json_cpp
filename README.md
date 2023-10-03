@@ -56,7 +56,7 @@ std::cout << json_to_string(json) << std::endl;
 Nesting: 
 ```
 Json json;
-json["just"]["testing"]["the"]["nesting"] = json_null(); 
+json["just"]["testing"]["the"]["nesting"] = json::null_value(); 
 std::cout << json_to_string(json) << std::endl; 
 ```
 
