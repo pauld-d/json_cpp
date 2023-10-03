@@ -161,7 +161,7 @@ Json json;
 json.push_back(string_to_json("{\"name\":\"Alexandre le \\\"grand\\\"\"}")); 
 json.push_back(string_to_json("{\"name\":\"Napoléon le \\\"petit\\\"\"}")); 
 json.push_back(string_to_json("{\"fact\":\"This is a \\\"good\\\" library\"}")); 
-std::cout << "    " << json << std::endl; 
+std::cout json << std::endl; 
 ```
 
 ![image](https://github.com/pauld-d/json_cpp/assets/36675895/c78ead46-56f8-42f3-8edc-4fff16a1ad80)
