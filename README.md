@@ -114,4 +114,5 @@ for (auto& [key,value] : json["backpack"])
 }
 ```
 
-![image](https://github.com/pauld-d/json_cpp/assets/36675895/ef35b94f-0c96-42b4-851e-0db36d6cbe95)
+![image](https://github.com/pauld-d/json_cpp/assets/36675895/2395c81c-ffdc-4b15-bbc9-ddd63084a93f)
+
