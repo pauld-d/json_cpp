@@ -60,7 +60,8 @@ json["just"]["testing"]["the"]["nesting"] = json_null();
 std::cout << json_to_string(json) << std::endl; 
 ```
 
-![image](https://github.com/pauld-d/json_cpp/assets/36675895/b9295686-aa9a-40b9-831b-e23fceaeefef)
+![image](https://github.com/pauld-d/json_cpp/assets/36675895/467e858f-9f02-423a-8948-eb4e6d6de3b3)
+
 
 --- 
 
@@ -74,7 +75,8 @@ std::cout << "has_key0: " << (has_key0 ? "true" : "false") << std::endl;
 std::cout << "has_key1: " << (has_key1 ? "true" : "false") << std::endl; 
 ```
 
-![image](https://github.com/pauld-d/json_cpp/assets/36675895/44fb049b-30e1-4381-8368-edb9bcb6d2fd)
+![image](https://github.com/pauld-d/json_cpp/assets/36675895/54df24fe-df82-40a8-aa0c-6324a1b5050e)
+
 
 --- 
 
