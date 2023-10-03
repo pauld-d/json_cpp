@@ -115,9 +115,7 @@ Iterating through an array:
 ```
 Json json = string_to_json("{\"backpack\":[\"Gengis Khan's Crown\",\"The Holy Grail\",\"The Bible\",\"The Shroud Of Turin\"],\"name\":\"Percival\"}");
 for (auto& [key,value] : json["backpack"]) 
-{
     std::cout << "key=" << key << ", value=" << value << std::endl; 
-}
 ```
 
 ![image](https://github.com/pauld-d/json_cpp/assets/36675895/2395c81c-ffdc-4b15-bbc9-ddd63084a93f)
