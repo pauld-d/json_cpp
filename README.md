@@ -60,7 +60,7 @@ std::cout << json_to_string(json) << std::endl;
 
 Testing key existence: 
 ```
-json = json_empty_object();
+JsonNode json = json_empty_object();
 json["key0"] = true; 
 bool has_key0 = json.contains("key0"); 
 bool has_key1 = json.contains("key1"); 
@@ -72,14 +72,25 @@ std::cout << "has_key1: " << (has_key1 ? "true" : "false") << std::endl;
 
 Listing keys: 
 ```
-json = json_empty_object();
+JsonNode json = json_empty_object();
 json["key0"] = true; 
 json["key1"] = 3.141f; 
 
 std::vector<std::string> keys = json.keys(); 
 
 for (std::string& k : keys) 
-{
     std::cout << k << std::endl; 
-}
 ```
+
+Iterating through an object:
+
+```
+JsonNode json = json_empty_object();
+json["key0"] = "value0"; 
+json["key1"] = "value1"; 
+
+for (auto& [key,value] : json) 
+    std::cout << "key=" << key << ", value=" << value << std::endl; 
+```
+
+![image](https://github.com/pauld-d/json_cpp/assets/36675895/db828baf-b007-48d3-8d02-92d4d40efae3)
