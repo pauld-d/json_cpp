@@ -15,7 +15,7 @@ USAGE:
 JSON to std::string: 
 ```
 JsonNode json = json_empty_object(); 
-json["name"] = "Paul Demanze";
+json["name"] = "Tutankhamun";
 json["age"] = 5157; 
 json["job"] = "Pharaoh"; 
 std::cout << json_to_string(json) << std::endl; 
