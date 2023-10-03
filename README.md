@@ -12,7 +12,7 @@ USAGE:
 
 JSON to std::string: 
 ```
-JsonNode json = json_empty_object(); 
+Json json = json_empty_object(); 
 json["name"] = "Tutankhamun";
 json["age"] = 5157; 
 json["job"] = "Pharaoh"; 
@@ -27,7 +27,7 @@ std::cout << json_to_string(json) << std::endl;
 
 std::string to JSON: 
 ```
-JsonNode json = string_to_json("{\"name\":\"Paul Demanze\",\"age\":23,\"jobTitle\":\"Software Engineer\",\"companies\":[\"Google\",\"PriceHubble\",\"NavLive\"]}");
+Json json = string_to_json("{\"name\":\"Paul Demanze\",\"age\":23,\"jobTitle\":\"Software Engineer\",\"companies\":[\"Google\",\"PriceHubble\",\"NavLive\"]}");
 std::cout << "name: " << json["name"] << std::endl; 
 std::cout << "companies: " << json["companies"] << std::endl; 
 ```
@@ -38,7 +38,7 @@ std::cout << "companies: " << json["companies"] << std::endl;
 
 Arrays: 
 ```
-JsonNode json = json_empty_object();
+Json json = json_empty_object();
 json["name"] = "Percival"; 
 json["backpack"] = json_empty_array(); 
 json["backpack"].push_back("Gengis Khan's Crown");
@@ -55,7 +55,7 @@ std::cout << json_to_string(json) << std::endl;
 
 Nesting: 
 ```
-JsonNode json = json_empty_object();
+Json json = json_empty_object();
 json["just"]["testing"]["the"]["nesting"] = json_null(); 
 std::cout << json_to_string(json) << std::endl; 
 ```
@@ -67,7 +67,7 @@ std::cout << json_to_string(json) << std::endl;
 
 Testing key existence: 
 ```
-JsonNode json = json_empty_object();
+Json json = json_empty_object();
 json["key0"] = true; 
 bool has_key0 = json.contains("key0"); 
 bool has_key1 = json.contains("key1"); 
@@ -82,7 +82,7 @@ std::cout << "has_key1: " << (has_key1 ? "true" : "false") << std::endl;
 
 Listing keys: 
 ```
-JsonNode json = json_empty_object();
+Json json = json_empty_object();
 json["key0"] = true; 
 json["key1"] = 3.141f; 
 std::vector<std::string> keys = json.keys(); 
@@ -98,7 +98,7 @@ for (std::string& k : keys)
 Iterating through an object:
 
 ```
-JsonNode json = json_empty_object();
+Json json = json_empty_object();
 json["key0"] = "value0"; 
 json["key1"] = "value1"; 
 for (auto& [key,value] : json) 
@@ -113,7 +113,7 @@ for (auto& [key,value] : json)
 Iterating through an array: 
 
 ```
-JsonNode json = string_to_json("{\"backpack\":[\"Gengis Khan's Crown\",\"The Holy Grail\",\"The Bible\",\"The Shroud Of Turin\"],\"name\":\"Percival\"}");
+Json json = string_to_json("{\"backpack\":[\"Gengis Khan's Crown\",\"The Holy Grail\",\"The Bible\",\"The Shroud Of Turin\"],\"name\":\"Percival\"}");
 for (auto& [key,value] : json["backpack"]) 
 {
     std::cout << "key=" << key << ", value=" << value << std::endl; 
@@ -127,6 +127,6 @@ for (auto& [key,value] : json["backpack"])
 Copying 
 
 ```
-JsonNode json1 = ... ; 
-JsonNode json2 = json1;
+Json json1 = ... ; 
+Json json2 = json1;
 ```
