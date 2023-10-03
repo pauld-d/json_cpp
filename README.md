@@ -1,13 +1,8 @@
 # json_cpp
 Single-file header-only C++ JSON library
 
-Reading: 
+USAGE: 
 ```
-#include "json_cpp.h"
-
-int main() {
-    std::string example = "{\"name\":\"Paul Demanze\",\"age\":23,\"jobTitle\":\"Software Engineer\",\"companies\":[\"Google\",\"PriceHubble\",\"NavLive\"]}";
-    JsonNode node = string_to_json(example); 
-    std::cout << node["name"] << std::endl; 
-}
+JsonNode node = string_to_json("{\"name\":\"Paul Demanze\",\"age\":23,\"jobTitle\":\"Software Engineer\",\"companies\":[\"Google\",\"PriceHubble\",\"NavLive\"]}"); 
+std::cout << node["name"] << std::endl; 
 ```
