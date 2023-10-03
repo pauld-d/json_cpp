@@ -122,3 +122,11 @@ for (auto& [key,value] : json["backpack"])
 
 ![image](https://github.com/pauld-d/json_cpp/assets/36675895/2395c81c-ffdc-4b15-bbc9-ddd63084a93f)
 
+---
+
+Copying 
+
+```
+JsonNode json1 = ... ; 
+JsonNode json2 = json1;
+```
