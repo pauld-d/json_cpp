@@ -81,9 +81,7 @@ Listing keys:
 JsonNode json = json_empty_object();
 json["key0"] = true; 
 json["key1"] = 3.141f; 
-
 std::vector<std::string> keys = json.keys(); 
-
 for (std::string& k : keys) 
     std::cout << "key=" << k << std::endl; 
 ```
@@ -98,9 +96,21 @@ Iterating through an object:
 JsonNode json = json_empty_object();
 json["key0"] = "value0"; 
 json["key1"] = "value1"; 
-
 for (auto& [key,value] : json) 
     std::cout << "key=" << key << ", value=" << value << std::endl; 
 ```
 
 ![image](https://github.com/pauld-d/json_cpp/assets/36675895/db828baf-b007-48d3-8d02-92d4d40efae3)
+
+---
+
+Iterating through an array: 
+
+```
+JsonNode json = string_to_json("{\"backpack\":[\"Gengis Khan's Crown\",\"The Holy Grail\",\"The Bible\",\"The Shroud Of Turin\"],\"name\":\"Percival\"}");
+for (auto& [key,value] : json["backpack"]) 
+{
+    std::cout << "    key=" << key << ", value=" << value << std::endl; 
+}
+
+![image](https://github.com/pauld-d/json_cpp/assets/36675895/ef35b94f-0c96-42b4-851e-0db36d6cbe95)
