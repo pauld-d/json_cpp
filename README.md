@@ -21,7 +21,8 @@ json["job"] = "Pharaoh";
 std::cout << json_to_string(json) << std::endl; 
 ```
 
-![image](https://github.com/pauld-d/json_cpp/assets/36675895/4b7b5b20-9e6d-4555-bf66-c3410576b03e)
+![image](https://github.com/pauld-d/json_cpp/assets/36675895/209775e6-3783-4a7e-ad87-37e329ed69ef)
+
 
 --- 
 
