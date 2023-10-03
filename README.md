@@ -28,8 +28,7 @@ std::cout << json_to_string(json) << std::endl;
 std::string to JSON: 
 ```
 JsonNode json = string_to_json("{\"name\":\"Paul Demanze\",\"age\":23,\"jobTitle\":\"Software Engineer\",\"companies\":[\"Google\",\"PriceHubble\",\"NavLive\"]}");
-std::string name = json["name"]; 
-std::cout << "name: " << name << std::endl; 
+std::cout << "name: " << json["name"] << std::endl; 
 std::cout << "companies: " << json["companies"] << std::endl; 
 ```
 
