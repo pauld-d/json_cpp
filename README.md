@@ -14,6 +14,9 @@ std::cout << "name: " << name << std::endl;
 std::cout << "companies: " << json["companies"] << std::endl; 
 ```
 
+![image](https://github.com/pauld-d/json_cpp/assets/36675895/fc2911a6-6a02-4b72-a48b-04048571d0ce)
+
+
 JSON to std::string: 
 ```
 JsonNode json = json_empty_object(); 
