@@ -34,3 +34,4 @@ json["backpack"].push_back("The Bible");
 json["backpack"].push_back("The Shroud Of Turin");
 std::cout << json_to_string(json) << std::endl; 
 ```
+![image](https://github.com/pauld-d/json_cpp/assets/36675895/ce5103b1-7cf7-4163-871e-f231df593aa3)
