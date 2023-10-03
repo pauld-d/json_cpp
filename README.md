@@ -3,7 +3,7 @@ Single-file header-only C++ JSON library
 
 USAGE: 
 ```
-JsonNode json = *string_to_json*("{\"name\":\"Paul Demanze\",\"age\":23,\"jobTitle\":\"Software Engineer\",\"companies\":[\"Google\",\"PriceHubble\",\"NavLive\"]}"); 
+JsonNode json = string_to_json("{\"name\":\"Paul Demanze\",\"age\":23,\"jobTitle\":\"Software Engineer\",\"companies\":[\"Google\",\"PriceHubble\",\"NavLive\"]}"); 
 std::cout << json["companies"] << std::endl; 
 ```
 OUTPUT: 
