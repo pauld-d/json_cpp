@@ -23,7 +23,6 @@ struct JsonNode {
         int type;
         std::string v;
         std::map<std::string, JsonNode> on; 
-        std::vector<JsonNode> an;
     
     public:
         bool isString() 
@@ -51,7 +50,6 @@ struct JsonNode {
             type = JSON_STRING; 
             v = std::string(value); 
             on.clear();
-            an.clear(); 
             return *this; 
         }
         
@@ -60,7 +58,6 @@ struct JsonNode {
             type = JSON_STRING; 
             v = std::string(value); 
             on.clear();
-            an.clear(); 
             return *this; 
         }
         
@@ -69,7 +66,6 @@ struct JsonNode {
             type = JSON_STRING; 
             v = value; 
             on.clear();
-            an.clear(); 
             return *this; 
         }
         
@@ -78,7 +74,6 @@ struct JsonNode {
             type = JSON_VALUE; 
             v = std::to_string(value); 
             on.clear();
-            an.clear(); 
             return *this; 
         }
         
@@ -87,7 +82,6 @@ struct JsonNode {
             type = JSON_VALUE; 
             v = std::to_string(value); 
             on.clear();
-            an.clear(); 
             return *this; 
         }
         
@@ -96,7 +90,6 @@ struct JsonNode {
             type = JSON_VALUE; 
             v = std::to_string(value); 
             on.clear();
-            an.clear(); 
             return *this; 
         }
         
@@ -105,7 +98,6 @@ struct JsonNode {
             type = JSON_VALUE; 
             v = std::to_string(value); 
             on.clear();
-            an.clear(); 
             return *this; 
         }
         
@@ -114,7 +106,6 @@ struct JsonNode {
             type = JSON_VALUE; 
             v = std::to_string(value); 
             on.clear();
-            an.clear(); 
             return *this; 
         }
         
@@ -123,7 +114,6 @@ struct JsonNode {
             type = JSON_VALUE; 
             v = std::to_string(value); 
             on.clear();
-            an.clear(); 
             return *this; 
         }
         
@@ -132,7 +122,6 @@ struct JsonNode {
             type = JSON_VALUE; 
             v = value ? "true" : "false"; 
             on.clear();
-            an.clear(); 
             return *this; 
         }
         
@@ -141,7 +130,6 @@ struct JsonNode {
             type = JSON_VALUE; 
             v = std::to_string(value); 
             on.clear();
-            an.clear(); 
             return *this; 
         }
         
@@ -150,7 +138,6 @@ struct JsonNode {
             type = JSON_VALUE; 
             v = std::to_string(value); 
             on.clear();
-            an.clear(); 
             return *this; 
         }
         
@@ -160,8 +147,7 @@ struct JsonNode {
             if (type != JSON_ARRAY)
                 throw std::invalid_argument("Cannot push because this JSON node is not an array"); 
                 
-            an.push_back(JsonNode()); 
-            an.back() = value; 
+            on[std::to_string(on.size())] = value; 
         }
         
         operator std::string() 
@@ -204,14 +190,14 @@ struct JsonNode {
             else if (type == JSON_ARRAY) 
             {
                 output += "["; 
-                std::vector<JsonNode>::iterator it = an.begin(); 
+                std::map<std::string, JsonNode>::iterator it = on.begin(); 
                 bool first = true; 
-                while (it != an.end()) 
+                while (it != on.end()) 
                 {
                     if (!first)
                         output += ",";
                     first = false; 
-                    output += it->to_string(); 
+                    output += it->second.to_string(); 
                     it++; 
                 }
                 output += "]"; 
@@ -252,6 +238,12 @@ struct JsonNode {
         
         JsonNode& operator[](std::string key) 
         {
+            if (is_null())
+            {
+                type = JSON_OBJECT; 
+                v = ""; 
+            }
+            
             if (type != JSON_OBJECT)
                 throw std::invalid_argument("Cannot search key " + key + "because this JSON node is not an object"); 
                 
@@ -272,20 +264,22 @@ struct JsonNode {
         {
             if (type != JSON_ARRAY) throw std::invalid_argument("Cannot access index " + std::to_string(key) + " because this JSON node is not an array"); 
             
-            if (0 <= key && key < an.size()) 
+            auto stringified = std::to_string(key); 
+            auto it = on.find(stringified); 
+            if (it != on.end())
             {
-                return an[key]; 
+                return it->second; 
             }
             else
             {
-                throw std::out_of_range("Index " + std::to_string(key) + " is out of range in array of size " + std::to_string(an.size())); 
+                throw std::out_of_range("Index " + stringified + " is out of range in array of size " + std::to_string(on.size())); 
             }
         }
         
         long unsigned int size() 
         {
             if (type != JSON_ARRAY) throw std::invalid_argument("Cannot access size because this JSON node is not an array"); 
-            return an.size(); 
+            return on.size(); 
         }
         
         static char* skip_whitespace(char* c) 
@@ -372,7 +366,7 @@ struct JsonNode {
                 return json;
             }
             while (1) {
-                if (arr.an.size() > 0) {
+                if (arr.on.size() > 0) {
                     json = skip_whitespace(json);
                     if (*json != ',') {
                         return NULL;
@@ -385,7 +379,7 @@ struct JsonNode {
                 if (json == NULL) {
                     return NULL;
                 }
-                arr.an.push_back(value); 
+                arr.on[std::to_string(arr.on.size())] = value; 
                 json = skip_whitespace(json);
                 if (*json == ']') {
                     json++;
@@ -447,6 +441,16 @@ struct JsonNode {
         bool is_null() 
         {
             return type == JSON_VALUE && v == "null"; 
+        }
+        
+        typedef std::map<std::string, JsonNode>::iterator iterator;
+
+        iterator begin() {
+            return on.begin();
+        }
+    
+        iterator end() {
+            return on.end();
         }
 };
 
