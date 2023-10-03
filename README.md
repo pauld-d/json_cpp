@@ -124,9 +124,18 @@ for (auto& [key,value] : json["backpack"])
 
 ---
 
-Copying 
+Deep copy
 
 ```
-Json json1 = ... ; 
-Json json2 = json1;
+Json json1 = json_empty_object(); 
+json1["name"] = "Tutankhamun";
+json1["age"] = 5157; 
+
+Json json2 = json1; 
+json2["age"] = 5158; 
+
+std::cout << "json1: " << json_to_string(json1) << std::endl; 
+std::cout << "json2: " << json_to_string(json2) << std::endl; 
 ```
+
+![image](https://github.com/pauld-d/json_cpp/assets/36675895/bcf5b072-e5f8-487c-9302-7c240fed046b)
