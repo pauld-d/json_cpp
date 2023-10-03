@@ -49,6 +49,8 @@ std::cout << json_to_string(json) << std::endl;
 
 ![image](https://github.com/pauld-d/json_cpp/assets/36675895/2861982d-1267-47a1-a2bb-ee9ba0c815aa)
 
+--- 
+
 Nesting: 
 ```
 JsonNode json = json_empty_object();
@@ -57,6 +59,8 @@ std::cout << json_to_string(json) << std::endl;
 ```
 
 ![image](https://github.com/pauld-d/json_cpp/assets/36675895/b9295686-aa9a-40b9-831b-e23fceaeefef)
+
+--- 
 
 Testing key existence: 
 ```
@@ -70,6 +74,8 @@ std::cout << "has_key1: " << (has_key1 ? "true" : "false") << std::endl;
 
 ![image](https://github.com/pauld-d/json_cpp/assets/36675895/44fb049b-30e1-4381-8368-edb9bcb6d2fd)
 
+--- 
+
 Listing keys: 
 ```
 JsonNode json = json_empty_object();
@@ -79,8 +85,12 @@ json["key1"] = 3.141f;
 std::vector<std::string> keys = json.keys(); 
 
 for (std::string& k : keys) 
-    std::cout << k << std::endl; 
+    std::cout << "key=" << k << std::endl; 
 ```
+
+![image](https://github.com/pauld-d/json_cpp/assets/36675895/a28ffef6-f166-43af-b8d7-c15e1ff4b430)
+
+--- 
 
 Iterating through an object:
 
