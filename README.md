@@ -1,6 +1,8 @@
 # json_cpp
 Single-file header-only JSON library in C++
 
+Created for fun to practice my STL 
+
 ---
 
 USAGE: 
