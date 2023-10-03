@@ -19,7 +19,8 @@ json["job"] = "Pharaoh";
 std::cout << json_to_string(json) << std::endl; 
 ```
 
-![image](https://github.com/pauld-d/json_cpp/assets/36675895/209775e6-3783-4a7e-ad87-37e329ed69ef)
+![image](https://github.com/pauld-d/json_cpp/assets/36675895/46161082-624f-4d08-b91a-2d3898c2133a)
+
 
 
 --- 
@@ -31,7 +32,7 @@ std::cout << "name: " << json["name"] << std::endl;
 std::cout << "companies: " << json["companies"] << std::endl; 
 ```
 
-![image](https://github.com/pauld-d/json_cpp/assets/36675895/fc2911a6-6a02-4b72-a48b-04048571d0ce)
+![image](https://github.com/pauld-d/json_cpp/assets/36675895/4cdbe11d-90a5-4bd5-b757-e1002beefa12)
 
 --- 
 
@@ -47,7 +48,8 @@ json["backpack"].push_back("The Shroud Of Turin");
 std::cout << json_to_string(json) << std::endl; 
 ```
 
-![image](https://github.com/pauld-d/json_cpp/assets/36675895/2861982d-1267-47a1-a2bb-ee9ba0c815aa)
+![image](https://github.com/pauld-d/json_cpp/assets/36675895/e3b9c695-db13-4d61-ba62-52f1daee6c8e)
+
 
 --- 
 
