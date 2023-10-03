@@ -124,7 +124,7 @@ for (auto& [key,value] : json["backpack"])
 
 ---
 
-Deep copy
+Deep copy:
 
 ```
 Json json1 = json_empty_object(); 
