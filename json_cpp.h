@@ -148,6 +148,10 @@ struct Json {
         template<typename T>
         void push_back(T value) 
         {
+	    if (type == JSON_OBJECT)
+                if (on.empty())
+                    type = JSON_ARRAY; 
+            
             if (type != JSON_ARRAY)
                 throw std::invalid_argument("Cannot push because this JSON node is not an array"); 
                 
