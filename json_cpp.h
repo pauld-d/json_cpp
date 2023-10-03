@@ -1,13 +1,13 @@
 /* json_cpp - v0.5 - Single-file header-only json reading and writing library 
-   	https://github.com/pauld-d/json_cpp
+https://github.com/pauld-d/json_cpp
 
-	Copyright (c) 1997-2100 Paul Demanze 
+Copyright (c) 1997-2099 Paul Demanze 
 
-	Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 
-	The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
-	THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 */
 
 #include <string>
@@ -419,21 +419,7 @@ struct Json {
             return NULL;
         }
         
-        static Json new_object() 
-        {
-            Json node; 
-            node.type = JSON_OBJECT;
-            return node; 
-        }
-        
-        static Json new_array() 
-        {
-            Json node; 
-            node.type = JSON_ARRAY; 
-            return node; 
-        }
-        
-        static Json new_value(std::string value) 
+        static Json value(std::string value) 
         {
             Json node; 
             node.type = JSON_VALUE; 
@@ -441,9 +427,9 @@ struct Json {
             return node; 
         }
         
-        static Json new_null() 
+        static Json null_value() 
         {
-            return new_value("null"); 
+            return value("null"); 
         }
         
         bool is_null() 
@@ -472,19 +458,4 @@ Json string_to_json(std::string s)
 std::string json_to_string(Json n) 
 {
     return n.to_string(); 
-}
-
-Json json_empty_object() 
-{
-    return Json::new_object(); 
-}
-
-Json json_empty_array() 
-{
-    return Json::new_array(); 
-}
-
-Json json_null() 
-{
-    return Json::new_null(); 
 }
