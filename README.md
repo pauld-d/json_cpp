@@ -18,7 +18,7 @@ Json json;
 json["name"] = "Tutankhamun";
 json["age"] = 5157; 
 json["job"] = "Pharaoh"; 
-std::cout << json_to_string(json) << std::endl; 
+std::string s = json_to_string(json);
 ```
 
 ![image](https://github.com/pauld-d/json_cpp/assets/36675895/46161082-624f-4d08-b91a-2d3898c2133a)
