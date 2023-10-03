@@ -70,4 +70,16 @@ std::cout << "has_key1: " << (has_key1 ? "true" : "false") << std::endl;
 
 ![image](https://github.com/pauld-d/json_cpp/assets/36675895/44fb049b-30e1-4381-8368-edb9bcb6d2fd)
 
+Listing keys: 
+```
+json = json_empty_object();
+json["key0"] = true; 
+json["key1"] = 3.141f; 
 
+std::vector<std::string> keys = json.keys(); 
+
+for (std::string& k : keys) 
+{
+    std::cout << k << std::endl; 
+}
+```
