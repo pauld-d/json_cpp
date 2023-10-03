@@ -1,7 +1,9 @@
 # json_cpp
 Single-file header-only C++ JSON library
 
-Compatible with all compilers and architectures
+Fast and lightweight
+
+Compiler and architecture agnostic
 
 ---
 
