@@ -25,6 +25,10 @@ struct Json {
         std::map<std::string, Json> on; 
     
     public:
+        Json() 
+        {
+            type = JSON_OBJECT; 
+        }
         bool isString() 
         {
             return type == JSON_STRING; 
