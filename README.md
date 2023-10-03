@@ -1,5 +1,5 @@
 # json_cpp
-Single-file header-only C++ JSON library
+Single-file header-only JSON library in C++
 
 ---
 
