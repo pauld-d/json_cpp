@@ -110,7 +110,7 @@ Iterating through an array:
 JsonNode json = string_to_json("{\"backpack\":[\"Gengis Khan's Crown\",\"The Holy Grail\",\"The Bible\",\"The Shroud Of Turin\"],\"name\":\"Percival\"}");
 for (auto& [key,value] : json["backpack"]) 
 {
-    std::cout << "    key=" << key << ", value=" << value << std::endl; 
+    std::cout << "key=" << key << ", value=" << value << std::endl; 
 }
 ```
 
