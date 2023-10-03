@@ -29,6 +29,7 @@ struct Json {
         {
             type = JSON_OBJECT; 
         }
+        
         bool isString() 
         {
             return type == JSON_STRING; 
@@ -300,15 +301,31 @@ struct Json {
         {
             c++; 
             char* x = c;
-            while (*c != '\0' && *c != '"') c++;
+            while (*c != '\0' && *c != '"') 
+            {
+                if (*c == '\\' && *(c+1)=='"')
+                {
+                    s += '"'; 
+                    c += 2; 
+                }
+                else if (*c == '\\' && *(c+1)=='\\')
+                {
+                    s += '\'; 
+                    c += 2; 
+                }
+                else
+                {
+                    s += *c; 
+                    c++; 
+                }
+            }
             if (*c == '"') {
-                s = std::string(x, c); 
                 c++;
             }
             return c;
         }
         
-        static char* parse_anything(char* c, std::string& str) {
+        static char* parse_value(char* c, std::string& str) {
             char* start = c;
             while (*c != '\0' && *c != '"' && *c != '{' && *c != '}' && *c != '[' && *c != ']' && *c != ',' && *c != ':' && *c != ' ' && *c != '\t' && *c != '\n' && *c != '\r') {
                 c++;
@@ -413,7 +430,7 @@ struct Json {
                     return NULL; 
                 default: 
                     value.type = JSON_VALUE;
-                    json = parse_anything(json, value.v);
+                    json = parse_value(json, value.v);
                     return json; 
             }
             return NULL;
