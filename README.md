@@ -29,7 +29,7 @@ std::cout << json_to_string(json) << std::endl;
 
 std::string to JSON: 
 ```
-Json json = string_to_json("{\"name\":\"Paul Demanze\",\"age\":23,\"jobTitle\":\"Software Engineer\",\"companies\":[\"Google\",\"PriceHubble\",\"NavLive\"]}");
+Json json = string_to_json("{\"name\":\"Paul Demanze\",\"age\":18,\"jobTitle\":\"Software Engineer\",\"companies\":[\"Google\",\"PriceHubble\",\"NavLive\"]}");
 std::cout << "name: " << json["name"] << std::endl; 
 std::cout << "companies: " << json["companies"] << std::endl; 
 ```
@@ -153,3 +153,18 @@ Support for infinite precision:
    Output: 
 
 ![image](https://github.com/pauld-d/json_cpp/assets/36675895/9af98001-244a-4c10-8e0a-f1df9f2acc25)
+
+---
+
+Support for escape sequences: 
+
+```
+Json json;
+json.push_back(string_to_json("{\"name\":\"Alexandre le \\\"grand\\\"\"}")); 
+json.push_back(string_to_json("{\"name\":\"Napoléon le \\\"petit\\\"\"}")); 
+json.push_back(string_to_json("{\"fact\":\"This is a \\\"good\\\" library\"}")); 
+std::cout << "    " << json << std::endl; 
+```
+
+![image](https://github.com/pauld-d/json_cpp/assets/36675895/c78ead46-56f8-42f3-8edc-4fff16a1ad80)
+
