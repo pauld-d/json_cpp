@@ -88,7 +88,8 @@ for (std::string& k : keys)
     std::cout << "key=" << k << std::endl; 
 ```
 
-![image](https://github.com/pauld-d/json_cpp/assets/36675895/a28ffef6-f166-43af-b8d7-c15e1ff4b430)
+![image](https://github.com/pauld-d/json_cpp/assets/36675895/11dc0f9b-99d1-4b99-b1fe-cdcbfe947974)
+
 
 --- 
 
@@ -102,7 +103,8 @@ for (auto& [key,value] : json)
     std::cout << "key=" << key << ", value=" << value << std::endl; 
 ```
 
-![image](https://github.com/pauld-d/json_cpp/assets/36675895/db828baf-b007-48d3-8d02-92d4d40efae3)
+![image](https://github.com/pauld-d/json_cpp/assets/36675895/7be5369f-18d7-4c9a-98ef-95223bcf725b)
+
 
 ---
 
