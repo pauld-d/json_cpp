@@ -21,7 +21,7 @@ struct JsonNode {
     
     private: 
         int type;
-        std::string str_value;
+        std::string v;
         std::map<std::string, JsonNode> on; 
         std::vector<JsonNode> an;
     
@@ -49,7 +49,7 @@ struct JsonNode {
         JsonNode& operator=(char* value) 
         {
             type = JSON_STRING; 
-            str_value = std::string(value); 
+            v = std::string(value); 
             on.clear();
             an.clear(); 
             return *this; 
@@ -58,7 +58,7 @@ struct JsonNode {
         JsonNode& operator=(const char* value) 
         {
             type = JSON_STRING; 
-            str_value = std::string(value); 
+            v = std::string(value); 
             on.clear();
             an.clear(); 
             return *this; 
@@ -67,7 +67,7 @@ struct JsonNode {
         JsonNode& operator=(std::string value) 
         {
             type = JSON_STRING; 
-            str_value = value; 
+            v = value; 
             on.clear();
             an.clear(); 
             return *this; 
@@ -76,7 +76,7 @@ struct JsonNode {
         JsonNode& operator=(unsigned int value) 
         {
             type = JSON_VALUE; 
-            str_value = std::to_string(value); 
+            v = std::to_string(value); 
             on.clear();
             an.clear(); 
             return *this; 
@@ -85,7 +85,7 @@ struct JsonNode {
         JsonNode& operator=(unsigned long int value) 
         {
             type = JSON_VALUE; 
-            str_value = std::to_string(value); 
+            v = std::to_string(value); 
             on.clear();
             an.clear(); 
             return *this; 
@@ -94,7 +94,7 @@ struct JsonNode {
         JsonNode& operator=(unsigned long long int value) 
         {
             type = JSON_VALUE; 
-            str_value = std::to_string(value); 
+            v = std::to_string(value); 
             on.clear();
             an.clear(); 
             return *this; 
@@ -103,7 +103,7 @@ struct JsonNode {
         JsonNode& operator=(int value) 
         {
             type = JSON_VALUE; 
-            str_value = std::to_string(value); 
+            v = std::to_string(value); 
             on.clear();
             an.clear(); 
             return *this; 
@@ -112,7 +112,7 @@ struct JsonNode {
         JsonNode& operator=(long int value) 
         {
             type = JSON_VALUE; 
-            str_value = std::to_string(value); 
+            v = std::to_string(value); 
             on.clear();
             an.clear(); 
             return *this; 
@@ -121,7 +121,7 @@ struct JsonNode {
         JsonNode& operator=(long long int value) 
         {
             type = JSON_VALUE; 
-            str_value = std::to_string(value); 
+            v = std::to_string(value); 
             on.clear();
             an.clear(); 
             return *this; 
@@ -130,7 +130,7 @@ struct JsonNode {
         JsonNode& operator=(bool value) 
         {
             type = JSON_VALUE; 
-            str_value = value ? "true" : "false"; 
+            v = value ? "true" : "false"; 
             on.clear();
             an.clear(); 
             return *this; 
@@ -139,7 +139,7 @@ struct JsonNode {
         JsonNode& operator=(float value) 
         {
             type = JSON_VALUE; 
-            str_value = std::to_string(value); 
+            v = std::to_string(value); 
             on.clear();
             an.clear(); 
             return *this; 
@@ -148,7 +148,7 @@ struct JsonNode {
         JsonNode& operator=(double value) 
         {
             type = JSON_VALUE; 
-            str_value = std::to_string(value); 
+            v = std::to_string(value); 
             on.clear();
             an.clear(); 
             return *this; 
@@ -166,7 +166,7 @@ struct JsonNode {
         
         operator std::string() 
         {
-            return str_value; 
+            return v; 
         }
     
         std::string to_string() 
@@ -175,12 +175,12 @@ struct JsonNode {
             if (type == JSON_STRING) 
             {
                 output += "\""; 
-                output += str_value; 
+                output += v; 
                 output += "\""; 
             }
             else if (type == JSON_VALUE) 
             {
-                output += str_value; 
+                output += v; 
             }
             else if (type == JSON_OBJECT) 
             {
@@ -221,7 +221,10 @@ struct JsonNode {
         
         friend std::ostream& operator<<(std::ostream& out, JsonNode n)
 	    {
-	        out << n.to_string(); 
+	        if (n.type == JSON_STRING)
+	            out << n.v; 
+	        else
+	            out << n.to_string(); 
 	        return out; 
 	    }
 	    
@@ -395,8 +398,8 @@ struct JsonNode {
             json = skip_whitespace(json);
             switch (*json) {
                 case '"':
-                    value.type = JSON_VALUE;
-                    json = parse_string(json, value.str_value);
+                    value.type = JSON_STRING;
+                    json = parse_string(json, value.v);
                     return json; 
                 case '{':
                     value.type = JSON_OBJECT;
@@ -408,7 +411,7 @@ struct JsonNode {
                     return NULL; 
                 default: 
                     value.type = JSON_VALUE;
-                    json = parse_anything(json, value.str_value);
+                    json = parse_anything(json, value.v);
                     return json; 
             }
             return NULL;
@@ -432,7 +435,7 @@ struct JsonNode {
         {
             JsonNode node; 
             node.type = JSON_VALUE; 
-            node.str_value = value; 
+            node.v = value; 
             return node; 
         }
         
@@ -443,7 +446,7 @@ struct JsonNode {
         
         bool is_null() 
         {
-            return type == JSON_VALUE && str_value == "null"; 
+            return type == JSON_VALUE && v == "null"; 
         }
 };
 
