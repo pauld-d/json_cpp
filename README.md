@@ -149,8 +149,6 @@ Support for infinite precision:
  json["size of my pee pee"] = Json::value("99999999999999999999999999999999999999999999999999999999999999999999999999"); 
  std::cout << json << std::endl; 
 ```
-   
-   Output: 
 
 ![image](https://github.com/pauld-d/json_cpp/assets/36675895/9af98001-244a-4c10-8e0a-f1df9f2acc25)
 
