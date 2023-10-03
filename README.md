@@ -145,7 +145,7 @@ std::cout << "json2: " << json_to_string(json2) << std::endl;
 Support for infinite precision: 
 
 ```
- Json json = Json(); 
+ Json json; 
  json["size of my pee pee"] = Json::value("99999999999999999999999999999999999999999999999999999999999999999999999999"); 
  std::cout << json << std::endl; 
 ```
