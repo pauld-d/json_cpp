@@ -12,7 +12,7 @@ USAGE:
 
 JSON to std::string: 
 ```
-Json json = json_empty_object(); 
+Json json; 
 json["name"] = "Tutankhamun";
 json["age"] = 5157; 
 json["job"] = "Pharaoh"; 
@@ -38,7 +38,7 @@ std::cout << "companies: " << json["companies"] << std::endl;
 
 Arrays: 
 ```
-Json json = json_empty_object();
+Json json;
 json["name"] = "Percival"; 
 json["backpack"] = json_empty_array(); 
 json["backpack"].push_back("Gengis Khan's Crown");
@@ -55,7 +55,7 @@ std::cout << json_to_string(json) << std::endl;
 
 Nesting: 
 ```
-Json json = json_empty_object();
+Json json;
 json["just"]["testing"]["the"]["nesting"] = json_null(); 
 std::cout << json_to_string(json) << std::endl; 
 ```
@@ -67,7 +67,7 @@ std::cout << json_to_string(json) << std::endl;
 
 Testing key existence: 
 ```
-Json json = json_empty_object();
+Json json;
 json["key0"] = true; 
 bool has_key0 = json.contains("key0"); 
 bool has_key1 = json.contains("key1"); 
@@ -82,7 +82,7 @@ std::cout << "has_key1: " << (has_key1 ? "true" : "false") << std::endl;
 
 Listing keys: 
 ```
-Json json = json_empty_object();
+Json json;
 json["key0"] = true; 
 json["key1"] = 3.141f; 
 std::vector<std::string> keys = json.keys(); 
@@ -98,7 +98,7 @@ for (std::string& k : keys)
 Iterating through an object:
 
 ```
-Json json = json_empty_object();
+Json json;
 json["key0"] = "value0"; 
 json["key1"] = "value1"; 
 for (auto& [key,value] : json) 
@@ -127,7 +127,7 @@ for (auto& [key,value] : json["backpack"])
 Deep copy:
 
 ```
-Json json1 = json_empty_object(); 
+Json json1; 
 json1["name"] = "Tutankhamun";
 json1["age"] = 5157; 
 
