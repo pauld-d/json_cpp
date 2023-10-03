@@ -6,17 +6,6 @@ USAGE:
 #include "json_cpp.h"
 ```
 
-std::string to JSON: 
-```
-JsonNode json = string_to_json("{\"name\":\"Paul Demanze\",\"age\":23,\"jobTitle\":\"Software Engineer\",\"companies\":[\"Google\",\"PriceHubble\",\"NavLive\"]}");
-std::string name = json["name"]; 
-std::cout << "name: " << name << std::endl; 
-std::cout << "companies: " << json["companies"] << std::endl; 
-```
-
-![image](https://github.com/pauld-d/json_cpp/assets/36675895/fc2911a6-6a02-4b72-a48b-04048571d0ce)
-
-
 JSON to std::string: 
 ```
 JsonNode json = json_empty_object(); 
@@ -28,6 +17,15 @@ std::cout << json_to_string(json) << std::endl;
 
 ![image](https://github.com/pauld-d/json_cpp/assets/36675895/4b7b5b20-9e6d-4555-bf66-c3410576b03e)
 
+std::string to JSON: 
+```
+JsonNode json = string_to_json("{\"name\":\"Paul Demanze\",\"age\":23,\"jobTitle\":\"Software Engineer\",\"companies\":[\"Google\",\"PriceHubble\",\"NavLive\"]}");
+std::string name = json["name"]; 
+std::cout << "name: " << name << std::endl; 
+std::cout << "companies: " << json["companies"] << std::endl; 
+```
+
+![image](https://github.com/pauld-d/json_cpp/assets/36675895/fc2911a6-6a02-4b72-a48b-04048571d0ce)
 
 Arrays: 
 ```
