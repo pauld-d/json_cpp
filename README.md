@@ -40,7 +40,7 @@ Arrays:
 ```
 Json json;
 json["name"] = "Percival"; 
-json["backpack"] = json_empty_array(); 
+json["backpack"] = Json(); 
 json["backpack"].push_back("Gengis Khan's Crown");
 json["backpack"].push_back("The Holy Grail");
 json["backpack"].push_back("The Bible");
