@@ -166,3 +166,15 @@ std::cout json << std::endl;
 
 ![image](https://github.com/pauld-d/json_cpp/assets/36675895/c78ead46-56f8-42f3-8edc-4fff16a1ad80)
 
+--- 
+
+Utility to escape / unescape a JSON string: 
+
+```
+ std::cout << json_escape("{\"name\":\"The \"Man with No Name\"\"}") << std::endl; 
+ std::cout << son_unescape(json_escape("{\"name\":\"The \"Man with No Name\"\"}")) << std::endl; 
+```
+    
+![image](https://github.com/pauld-d/json_cpp/assets/36675895/fc46640b-b759-4ebb-9c54-f6f4c534512c)
+
+

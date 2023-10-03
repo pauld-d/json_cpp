@@ -260,7 +260,7 @@ struct Json {
             
             if (iterator == on.end())
             {
-                on[key] = new_null(); 
+                on[key] = null_value(); 
                 return on[key]; 
             }
             else
@@ -476,3 +476,37 @@ std::string json_to_string(Json n)
 {
     return n.to_string(); 
 }
+
+std::string json_escape(std::string s) 
+{
+    std::string es; 
+    for (char c : s)
+    {
+        if (c == '\\' || c == '"')
+        {
+            es += '\\'; 
+        }
+        es += c; 
+    }
+    return es; 
+}
+
+std::string json_unescape(std::string s)
+{
+    std::string es; 
+    for (int i=0;i<s.size();i++) 
+    {
+        char c = s[i];
+        if (c == '\\' && (i+1) < s.size() && s[i+1] == '\\')
+        {
+            i++; 
+        }
+        else if (c == '\\' && (i+1) < s.size() && s[i+1] == '"')
+        {
+            i++; 
+        }
+        es += s[i]; 
+    }
+    return es; 
+}
+
